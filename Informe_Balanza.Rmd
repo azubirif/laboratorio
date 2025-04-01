@@ -1,0 +1,8 @@
+---
+title: "Balanza de corriente"
+author: "Alejandro Zubiri"
+date: "2025-04-01"
+output:
+  pdf_document: default
+---
+# Balanza de corriente
