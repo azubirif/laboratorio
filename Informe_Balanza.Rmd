@@ -1,8 +1,108 @@
 ---
 title: "Balanza de corriente"
 author: "Alejandro Zubiri"
+header-includes:
+   - \usepackage{physics}
+   - \renewcommand{\contentsname}{Contenidos}
 date: "2025-04-01"
 output:
   pdf_document: default
 ---
-# Balanza de corriente
+```{r}
+library("knitr")
+library("readODS")
+data = read_ods("./BalanzaCorriente.ods")
+```
+
+# Balanza de Corriente
+
+## 1. Objetivo  
+- Estudiar la **ley de Laplace** aplicada a la interacción entre corrientes eléctricas y campos magnéticos.  
+- Determinar experimentalmente el **módulo del campo magnético** generado por un imán permanente.  
+- Observar y analizar el **principio de acción y reacción** de Newton en un sistema magnético.  
+
+---
+
+## 2. Materiales  
+- **Generador de corriente continua**: Para suministrar una corriente estable.  
+- **Balanza digital**: Medir variaciones de masa debido a fuerzas magnéticas.  
+- **Soporte y barra metálica**: Estructura para fijar componentes.  
+- **Set de circuitos impresos** (6 modelos): Diferentes longitudes de conductores para variar el parámetro \( L \).  
+- **Unidad de sujeción**: Dispositivo para fijar los circuitos impresos cerca del imán.  
+- **Cables y amperímetro**: Conectar y medir la corriente en el circuito.  
+- **Imán permanente**: Fuente del campo magnético.  
+
+**Figura 1**: Esquema de los componentes principales: generador, balanza, soporte, circuitos impresos e imán.
+
+---
+
+## 3. Fundamentos Teóricos  
+
+### Ley de Laplace  
+Cuando un conductor de longitud \( L \), por el que circula una corriente \( I \), se coloca en un campo magnético \( \vec{B} \), experimenta una fuerza magnética \( \vec{F} \). Esta fuerza es perpendicular al plano formado por \( \vec{B} \) y el vector longitud \( \vec{L} \), y se expresa como:  
+
+\[
+\vec{F} = I \cdot (\vec{L} \times \vec{B})
+\]  
+
+Donde:  
+- \( \vec{L} \): Vector con magnitud igual a la longitud del conductor y dirección igual al sentido de la corriente.  
+- \( \vec{B} \): Campo magnético del imán.  
+
+---
+
+## 4. Procedimiento Experimental  
+
+### Montaje Inicial  
+1. **Fijación de componentes**:  
+   - Unir la barra metálica a la base del soporte.  
+   - Enroscar la unidad de sujeción en la barra.  
+   - Acoplar el circuito impreso seleccionado en la parte frontal de la unidad de sujeción (ver Figura 2).  
+
+2. **Configuración eléctrica**:  
+   - Conectar el generador en **modo corriente continua**.  
+   - Colocar el amperímetro en serie entre el generador y la unidad de sujeción (Figura 3).  
+   - Asegurar que el circuito esté abierto hasta comenzar las mediciones.  
+
+### Medición de la Masa del Imán  
+- Pesar el imán con la balanza y registrar su masa (\( m \)) junto con la precisión del instrumento.  
+
+### Colocación del Circuito Impreso  
+- Posicionar el circuito impreso entre los polos del imán **sin contacto físico** (Figura 4.a).  
+- Asegurar que solo la sección horizontal del circuito (dentro del contorno rojo en Figura 4.b) esté expuesta al campo magnético.  
+
+### Ejecución del Experimento  
+1. Encender el generador para establecer una corriente \( I \) en el circuito.  
+2. Registrar la **masa aparente** (\( m' \)) mostrada por la balanza, que disminuirá debido a la fuerza de reacción magnética \( \vec{F}_r \).  
+
+### Análisis de Fuerzas  
+En equilibrio estático, las fuerzas sobre el imán cumplen:  
+
+\[
+\sum \vec{F}_i = \vec{F}_N + \vec{P} + \vec{F}_r = \vec{0}
+\]  
+
+- \( \vec{F}_N \): Fuerza normal de la balanza.  
+- \( \vec{P} = m \cdot g \): Peso del imán.  
+- \( \vec{F}_r = I \cdot L \cdot |\vec{B}| \): Fuerza de reacción (módulo igual a la fuerza magnética).  
+
+La relación entre la masa aparente y el campo magnético se obtiene de:  
+
+\[
+m' \cdot g = m \cdot g - I \cdot L \cdot |\vec{B}|
+\]  
+
+**Figura 5**: Diagrama de fuerzas sobre el imán en equilibrio. 
+# Tratamiento de datos
+Los datos recogidos fueron los siguientes:
+```{r echo=FALSE}
+kable(data[1:6, 1:5], caption="Balanza de corriente, variando el circuito.")
+```
+La siguiente gráfica representa $F_N$ frente a la longitud $L$:
+
+```{r}
+fn = t.data.frame(data[1:6, 3])
+long = t.data.frame(data[1:6,4])
+plot(long, fn, xlab="Longitud (m)", ylab="F_N (N)")
+```
+
