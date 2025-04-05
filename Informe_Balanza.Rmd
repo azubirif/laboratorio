@@ -98,11 +98,88 @@ Los datos recogidos fueron los siguientes:
 ```{r echo=FALSE}
 kable(data[1:6, 1:5], caption="Balanza de corriente, variando el circuito.")
 ```
-La siguiente gráfica representa $F_N$ frente a la longitud $L$:
+Sin embargo, antes de representar los datos, vamos a desarrollar la propagación de errores. Tenemos que:
+$$
+F_N = m'g
+$$
+Por tanto, desarrollando, tenemos que:
+$$
+\Delta F_N = |\pdv{F_N}{m'}|\Delta m' + |\pdv{F_N}{g}|\Delta g = g\Delta m' + m' \Delta g
+$$
+Y, sabiendo que $\Delta m' = 0,00001$, y que $\Delta g = 0,0000001$, ya tenemos el error en la fuerza normal $F_N$. Por otro lado, el error en la longitud del circuito $\Delta L$ es $\Delta L = 0.00005~(m)$. Ahora podemos representar los datos con los respectivos errores:
 
 ```{r}
-fn = t.data.frame(data[1:6, 3])
-long = t.data.frame(data[1:6,4])
+fn = as.numeric(t.data.frame(data[1:6, 3]))
+long = as.numeric(t.data.frame(data[1:6,4]))
 plot(long, fn, xlab="Longitud (m)", ylab="F_N (N)")
+arrows(
+  long,
+  fn - t.data.frame(data[1:6,8]),
+  long,
+  fn + t.data.frame(data[1:6,8]),
+  angle = 90,    # Ángulo de las líneas transversales
+  code = 3,      # Barras en ambos extremos
+  length = 0.05, # Longitud de las líneas transversales
+  col = "darkred"
+)
+arrows(
+  long - 0.00005,
+  fn,
+  long+0.00005,
+  fn,
+  angle=90,
+  code=3,
+  length=0.05,
+  col="darkgreen"
+)
 ```
-
+Como se puede observar, el error es minúsculo, por lo que los datos son muy representativos, por lo que podemos pasar a realizar el ajuste lineal.
+## Ajuste lineal.
+Teniendo que
+$$
+m'g = mg - I L B
+$$
+deberíamos esperar una ordenada en el origen $n = mg$, y una pendiente $m=IB$, de donde podremos obtener el campo magnético generado. Si realizamos este ajuste, obtenemos:
+```{r}
+m = lm(fn ~ as.numeric(long), data = data)
+plot(long, fn, xlab="Longitud (m)", ylab="F_N (N)")
+arrows(
+  long,
+  fn - t.data.frame(data[1:6,8]),
+  long,
+  fn + t.data.frame(data[1:6,8]),
+  angle = 90,    # Ángulo de las líneas transversales
+  code = 3,      # Barras en ambos extremos
+  length = 0.05, # Longitud de las líneas transversales
+  col = "darkred"
+)
+arrows(
+  long - 0.00005,
+  fn,
+  long+0.00005,
+  fn,
+  angle=90,
+  code=3,
+  length=0.05,
+  col="darkgreen"
+)
+abline(m)
+```
+Obteniendo una ordenada en el origen de $1.57431$, y una pendiente de $-0.297$, con un coeficiente de correlación $R^2 = 0.7213$, obteniendo un error porcentual $\varepsilon = (1-R^2)\cdot 100 =27.87\%$. En este caso, la ordenada en el origen representa el peso del objeto. Este peso, cuando se midió en el laboratorio con intensidad nula, resultó ser de $mg=1.6041~(N)$. Comparándolo con este resultado, tenemos el error porcentual:
+$$
+\varepsilon_P = | \frac{mg-n}{mg}| \cdot 100 = 1.85\%
+$$
+Con esto, podemos pasar a medir el campo magnético. Con la ecuación
+$$
+m = IB
+$$
+Podemos despejar $B$ para obtener
+$$
+B = \frac{m}{I} = \frac{-0.297}{1.5}= -0.198~(T)
+$$
+Que es el campo magnético deseado.\\
+Con esto vamos a pasar a analizar los datos de la balanza de corriente, manteniendo el circuito constante y variando la intensidad. Con esto, se obtuvieron los siguientes datos:
+```{r}
+kable(data[10:16,1:5], caption="Balanza de corriente, variando la intensidad.")
+```
+Antes de representar tenemos que el amperímetro tiene una precisión (APUNTE: el error de resolucion es de $10mA$)
