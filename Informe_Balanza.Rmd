@@ -114,9 +114,9 @@ long = as.numeric(t.data.frame(data[1:6,4]))
 plot(long, fn, xlab="Longitud (m)", ylab="F_N (N)")
 arrows(
   long,
-  fn - t.data.frame(data[1:6,8]),
+  fn - as.numeric(t.data.frame(data[1:6,8])),
   long,
-  fn + t.data.frame(data[1:6,8]),
+  fn + as.numeric(t.data.frame(data[1:6,8])),
   angle = 90,    # Ángulo de las líneas transversales
   code = 3,      # Barras en ambos extremos
   length = 0.05, # Longitud de las líneas transversales
@@ -144,10 +144,10 @@ deberíamos esperar una ordenada en el origen $n = mg$, y una pendiente $m=IB$, 
 m = lm(fn ~ as.numeric(long), data = data)
 plot(long, fn, xlab="Longitud (m)", ylab="F_N (N)")
 arrows(
-  long,
-  fn - t.data.frame(data[1:6,8]),
-  long,
-  fn + t.data.frame(data[1:6,8]),
+  as.numeric(long),
+  fn -as.numeric(t.data.frame(data[1:6,8])),
+  as.numeric(long),
+  fn + as.numeric(t.data.frame(data[1:6,8])),
   angle = 90,    # Ángulo de las líneas transversales
   code = 3,      # Barras en ambos extremos
   length = 0.05, # Longitud de las líneas transversales
@@ -161,11 +161,11 @@ arrows(
   angle=90,
   code=3,
   length=0.05,
-  col="darkgreen"
+  col="darkgreen",
 )
 abline(m)
 ```
-Obteniendo una ordenada en el origen de $1.57431$, y una pendiente de $-0.297$, con un coeficiente de correlación $R^2 = 0.7213$, obteniendo un error porcentual $\varepsilon = (1-R^2)\cdot 100 =27.87\%$. En este caso, la ordenada en el origen representa el peso del objeto. Este peso, cuando se midió en el laboratorio con intensidad nula, resultó ser de $mg=1.6041~(N)$. Comparándolo con este resultado, tenemos el error porcentual:
+Obteniendo una ordenada en el origen de $n=1.57431$, y una pendiente de $-0.297$, con un coeficiente de correlación $R^2 = 0.7213$, obteniendo un error porcentual $\varepsilon = (1-R^2)\cdot 100 =27.87\%$. En este caso, la ordenada en el origen representa el peso del objeto. Este peso, cuando se midió en el laboratorio con intensidad nula, resultó ser de $mg=1.6041~(N)$, o una masa $m = \frac{n}{g} =0.160649758$. Comparándolo con este resultado, tenemos el error porcentual:
 $$
 \varepsilon_P = | \frac{mg-n}{mg}| \cdot 100 = 1.85\%
 $$
@@ -179,7 +179,76 @@ B = \frac{m}{I} = \frac{-0.297}{1.5}= -0.198~(T)
 $$
 Que es el campo magnético deseado.\\
 Con esto vamos a pasar a analizar los datos de la balanza de corriente, manteniendo el circuito constante y variando la intensidad. Con esto, se obtuvieron los siguientes datos:
-```{r}
+```{r echo=FALSE}
 kable(data[10:16,1:5], caption="Balanza de corriente, variando la intensidad.")
 ```
-Antes de representar tenemos que el amperímetro tiene una precisión (APUNTE: el error de resolucion es de $10mA$)
+Antes de representar tenemos que el amperímetro tiene una precisión $\Delta I = 10^{-3}~(A)$, si representamos $F_N$ frente a $I$, obtenemos:
+```{r}
+fn = as.numeric(t.data.frame(data[11:16, 3]))
+intens = as.numeric(t.data.frame(data[11:16, 1]))
+plot(intens, fn, xlab ="Intensidad (A)", ylab ="Fuerza normal (N)")
+arrows(
+  intens,
+  fn - as.numeric(t.data.frame(data[11:16,8])),
+  intens,
+  fn + as.numeric(t.data.frame(data[11:16,8])),
+  angle = 90,    # Ángulo de las líneas transversales
+  code = 3,      # Barras en ambos extremos
+  length = 0.05, # Longitud de las líneas transversales
+  col = "darkred"
+)
+arrows(
+  intens - 0.001,
+  fn,
+  intens+0.001,
+  fn,
+  angle=90,
+  code=3,
+  length=0.05,
+  col="darkgreen"
+)
+```
+Donde se observa una clara dependencia lineal. Si ahora utilizamos el método de mínimos cuadrados, y representamos dicha recta, obtenemos:
+```{r}
+fn = as.numeric(t.data.frame(data[11:16, 3]))
+intens = as.numeric(t.data.frame(data[11:16, 1]))
+plot(intens, fn, xlab ="Intensidad (A)", ylab ="Fuerza normal (N)")
+arrows(
+  intens,
+  fn - as.numeric(t.data.frame(data[11:16,8])),
+  intens,
+  fn + as.numeric(t.data.frame(data[11:16,8])),
+  angle = 90,    # Ángulo de las líneas transversales
+  code = 3,      # Barras en ambos extremos
+  length = 0.05, # Longitud de las líneas transversales
+  col = "darkred"
+)
+arrows(
+  intens - 0.001,
+  fn,
+  intens+0.001,
+  fn,
+  angle=90,
+  code=3,
+  length=0.05,
+  col="darkgreen"
+)
+m2 = lm(fn ~ intens, data = data)
+abline(m2)
+```
+```{r}
+summary(m2)
+```
+Obteniendo una ordenada sobre el origen $n = 1.5714481$ (que coincide con la obtenida anteriormente) y una pendiente $m=-0.0039311$. Con esto, obtenemos un valor $R^2 = 0.9947$, teniendo así un error $(1-R^2)\cdot 100 = 0.53\%$. De nuevo, obtenemos que la masa del imán es $m_{iman}= \frac{n}{g} = 0,160357716$. Comparando con la masa obtenida en el laboratorio, obtenemos que el error porcentual es
+$$
+\varepsilon_P = | \frac{p-\tilde{p}}{p}|\cdot 100 = 2.0355\%
+$$
+
+y ahora el campo magnético es
+$$
+LB = m \implies B = \frac{m}{L} = -0.13103~(T)
+$$
+# Cuestiones
+- ¿Por qué no contribuye a la fuerza de reacción los segmentos verticales de los
+circuitos impresos?
+Estos no contribuyen ya que el campo magnético tiene como dirección el vector perpendicular entre la dirección de la corriente y el vector que une la corriente y el imán. Como estos son paralelos, el campo magnético es $0$.
