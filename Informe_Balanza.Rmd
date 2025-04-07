@@ -6,9 +6,35 @@ header-includes:
    - \renewcommand{\contentsname}{Contenidos}
 date: "2025-04-01"
 output:
-  pdf_document: default
+  pdf_document:
+    fig_caption: yes
+    fig_crop: no
+    keep_tex: no
+    number_sections: yes
+    toc: yes
+    toc_depth: 2
 ---
-```{r}
+```{r LoadData, message=FALSE, warning=FALSE, include=FALSE}
+# DO NOT SHOW IN FINAL REPORT
+options(tinytex.verbose = TRUE)
+options(digits = 5) 
+
+#Load Libraries
+Libraries <- c("knitr", "readr")
+for (p in Libraries) { 
+    library(p, character.only = TRUE)
+}
+
+opts_chunk$set(fig.align='center',
+               external=TRUE,
+               echo=TRUE,
+               warning=FALSE,
+               fig.pos='H'
+               )
+
+```
+
+```{r echo=FALSE}
 library("knitr")
 library("readODS")
 data = read_ods("./BalanzaCorriente.ods")
@@ -93,7 +119,9 @@ m' \cdot g = m \cdot g - I \cdot L \cdot |\vec{B}|
 \]  
 
 **Figura 5**: Diagrama de fuerzas sobre el imán en equilibrio. 
-# Tratamiento de datos
+
+## Tratamiento de datos
+
 Los datos recogidos fueron los siguientes:
 ```{r echo=FALSE}
 kable(data[1:6, 1:5], caption="Balanza de corriente, variando el circuito.")
@@ -108,7 +136,7 @@ $$
 $$
 Y, sabiendo que $\Delta m' = 0,00001$, y que $\Delta g = 0,0000001$, ya tenemos el error en la fuerza normal $F_N$. Por otro lado, el error en la longitud del circuito $\Delta L$ es $\Delta L = 0.00005~(m)$. Ahora podemos representar los datos con los respectivos errores:
 
-```{r}
+```{r echo=FALSE}
 fn = as.numeric(t.data.frame(data[1:6, 3]))
 long = as.numeric(t.data.frame(data[1:6,4]))
 plot(long, fn, xlab="Longitud (m)", ylab="F_N (N)")
@@ -135,12 +163,13 @@ arrows(
 ```
 Como se puede observar, el error es minúsculo, por lo que los datos son muy representativos, por lo que podemos pasar a realizar el ajuste lineal.
 ## Ajuste lineal.
+
 Teniendo que
 $$
 m'g = mg - I L B
 $$
 deberíamos esperar una ordenada en el origen $n = mg$, y una pendiente $m=IB$, de donde podremos obtener el campo magnético generado. Si realizamos este ajuste, obtenemos:
-```{r}
+```{r echo=FALSE}
 m = lm(fn ~ as.numeric(long), data = data)
 plot(long, fn, xlab="Longitud (m)", ylab="F_N (N)")
 arrows(
@@ -177,13 +206,16 @@ Podemos despejar $B$ para obtener
 $$
 B = \frac{m}{I} = \frac{-0.297}{1.5}= -0.198~(T)
 $$
-Que es el campo magnético deseado.\\
+Que es el campo magnético deseado.
+
+\pagebreak
+
 Con esto vamos a pasar a analizar los datos de la balanza de corriente, manteniendo el circuito constante y variando la intensidad. Con esto, se obtuvieron los siguientes datos:
 ```{r echo=FALSE}
 kable(data[10:16,1:5], caption="Balanza de corriente, variando la intensidad.")
 ```
 Antes de representar tenemos que el amperímetro tiene una precisión $\Delta I = 10^{-3}~(A)$, si representamos $F_N$ frente a $I$, obtenemos:
-```{r}
+```{r echo=FALSE}
 fn = as.numeric(t.data.frame(data[11:16, 3]))
 intens = as.numeric(t.data.frame(data[11:16, 1]))
 plot(intens, fn, xlab ="Intensidad (A)", ylab ="Fuerza normal (N)")
@@ -209,7 +241,7 @@ arrows(
 )
 ```
 Donde se observa una clara dependencia lineal. Si ahora utilizamos el método de mínimos cuadrados, y representamos dicha recta, obtenemos:
-```{r}
+```{r echo=FALSE}
 fn = as.numeric(t.data.frame(data[11:16, 3]))
 intens = as.numeric(t.data.frame(data[11:16, 1]))
 plot(intens, fn, xlab ="Intensidad (A)", ylab ="Fuerza normal (N)")
@@ -236,9 +268,7 @@ arrows(
 m2 = lm(fn ~ intens, data = data)
 abline(m2)
 ```
-```{r}
-summary(m2)
-```
+
 Obteniendo una ordenada sobre el origen $n = 1.5714481$ (que coincide con la obtenida anteriormente) y una pendiente $m=-0.0039311$. Con esto, obtenemos un valor $R^2 = 0.9947$, teniendo así un error $(1-R^2)\cdot 100 = 0.53\%$. De nuevo, obtenemos que la masa del imán es $m_{iman}= \frac{n}{g} = 0,160357716$. Comparando con la masa obtenida en el laboratorio, obtenemos que el error porcentual es
 $$
 \varepsilon_P = | \frac{p-\tilde{p}}{p}|\cdot 100 = 2.0355\%
@@ -248,7 +278,9 @@ y ahora el campo magnético es
 $$
 LB = m \implies B = \frac{m}{L} = -0.13103~(T)
 $$
-# Cuestiones
+
+## Cuestiones
+
 - ¿Por qué no contribuye a la fuerza de reacción los segmentos verticales de los
 circuitos impresos?
 Estos no contribuyen ya que el campo magnético tiene como dirección el vector perpendicular entre la dirección de la corriente y el vector que une la corriente y el imán. Como estos son paralelos, el campo magnético es $0$.
