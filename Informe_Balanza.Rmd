@@ -137,8 +137,8 @@ $$
 Y, sabiendo que $\Delta m' = 0,00001$, y que $\Delta g = 0,0000001$, ya tenemos el error en la fuerza normal $F_N$. Por otro lado, el error en la longitud del circuito $\Delta L$ es $\Delta L = 0.00005~(m)$. Ahora podemos representar los datos con los respectivos errores:
 
 ```{r echo=FALSE}
-fn = as.numeric(t.data.frame(data[1:6, 3]))
-long = as.numeric(t.data.frame(data[1:6,4]))
+fn = as.numeric(t.data.frame(data[1:5, 3]))
+long = as.numeric(t.data.frame(data[1:5,4]))
 plot(long, fn, xlab="Longitud (m)", ylab="F_N (N)")
 arrows(
   long,
@@ -174,9 +174,9 @@ m = lm(fn ~ as.numeric(long), data = data)
 plot(long, fn, xlab="Longitud (m)", ylab="F_N (N)")
 arrows(
   as.numeric(long),
-  fn -as.numeric(t.data.frame(data[1:6,8])),
+  fn -as.numeric(t.data.frame(data[1:5,8])),
   as.numeric(long),
-  fn + as.numeric(t.data.frame(data[1:6,8])),
+  fn + as.numeric(t.data.frame(data[1:5,8])),
   angle = 90,    # Ángulo de las líneas transversales
   code = 3,      # Barras en ambos extremos
   length = 0.05, # Longitud de las líneas transversales
@@ -193,8 +193,9 @@ arrows(
   col="darkgreen",
 )
 abline(m)
+summary(m)
 ```
-Obteniendo una ordenada en el origen de $n=1.57431$, y una pendiente de $-0.297$, con un coeficiente de correlación $R^2 = 0.7213$, obteniendo un error porcentual $\varepsilon = (1-R^2)\cdot 100 =27.87\%$. En este caso, la ordenada en el origen representa el peso del objeto. Este peso, cuando se midió en el laboratorio con intensidad nula, resultó ser de $mg=1.6041~(N)$, o una masa $m = \frac{n}{g} =0.160649758$. Comparándolo con este resultado, tenemos el error porcentual:
+Obteniendo una ordenada en el origen de $n=1.57431$, y una pendiente de $-0.297$, con un coeficiente de correlación $R^2 = 0.7213$, obteniendo un error porcentual $\varepsilon = (1-R^2)\cdot 100 =27.87\%$. En este caso, la ordenada en el origen representa el peso del objeto. Este peso, cuando se midió en el laboratorio con intensidad nula, resultó ser de $m=0.16041~(kg)$. Comparándolo con este resultado, tenemos el error porcentual:
 $$
 \varepsilon_P = | \frac{mg-n}{mg}| \cdot 100 = 1.85\%
 $$

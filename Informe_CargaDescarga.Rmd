@@ -65,5 +65,17 @@ plot(tiempo, t.data.frame(data[1:11, 2]), xlab="Tiempo (S)", ylab ="V_c (Vol)")
 plot(tiempo, t.data.frame(data[1:11, 3]))
 
 ```
+```{r}
+plot(t.data.frame(data[1:12,9]), t.data.frame(data[1:12,2]))
+```
+```{r}
+plot(t.data.frame(data[14:24,9]), t.data.frame(data[14:24,2]))
+```
+
+```{r}
+plot(t.data.frame(data[55:65, 1]), t.data.frame(data[67:77,1]))
+m2 = lm(t.data.frame(data[67:77,1]) ~ t.data.frame(data[55:65, 1]), data = data)
+summary(m2)
+```
 
 
