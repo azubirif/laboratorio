@@ -1,0 +1,69 @@
+---
+title: "Informe - Carga y Descarga"
+author: "Alejandro Zubiri"
+date: "2025-04-08"
+header-includes:
+   - \usepackage{physics}
+   - \renewcommand{\contentsname}{Contenidos}
+output: 
+  pdf_document:
+    fig_caption: yes
+    fig_crop: no
+    keep_tex: no
+    number_sections: yes
+    toc: yes
+    toc_depth: 2
+---
+```{r, setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE
+)
+```
+
+
+```{r LoadData, message=FALSE, warning=FALSE, include=FALSE}
+# DO NOT SHOW IN FINAL REPORT
+options(tinytex.verbose = TRUE)
+options(digits = 5) 
+
+#Load Libraries
+Libraries <- c("knitr", "readr")
+for (p in Libraries) { 
+    library(p, character.only = TRUE)
+}
+
+opts_chunk$set(fig.align='center',
+               external=TRUE,
+               echo=TRUE,
+               warning=FALSE,
+               fig.pos='H'
+               )
+
+```
+
+```{r echo=FALSE}
+library("knitr")
+library("readODS")
+data = read_ods("./CargaYDescarga.ods")
+```
+
+# Carga y descarga
+
+
+## Tratamiento de datos
+
+Los datos obtenidos fueron los siguientes
+```{r}
+kable(data[1:10,1:3], caption="Carga del condensador.")
+kable(data[13:24, 1:3], caption ="Descarga del condensador.")
+```
+Si representamos cada uno de los voltajes en la fase de carga, obtenemos
+```{r}
+tiempo = t.data.frame(data[1:11, 1])
+par(mfrow=c(1,2))
+plot(tiempo, t.data.frame(data[1:11, 2]), xlab="Tiempo (S)", ylab ="V_c (Vol)")
+plot(tiempo, t.data.frame(data[1:11, 3]))
+
+```
+
+
