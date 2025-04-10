@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.4.8)  8 APR 2025 19:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.3.30)  10 APR 2025 20:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -345,52 +345,69 @@ Package hyperref Info: Link coloring OFF on input line 15.
 
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [3]
-Overfull \hbox (23.29488pt too wide) in paragraph at lines 122--137
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+<images/elementosExp.png, id=87, 1013.7875pt x 488.82625pt>
+File: images/elementosExp.png Graphic file (type png)
+<use images/elementosExp.png>
+Package pdftex.def Info: images/elementosExp.png  used on input line 71.
+(pdftex.def)             Requested size: 354.83095pt x 171.09174pt.
+
+Overfull \hbox (9.83095pt too wide) in paragraph at lines 71--72
+ [][] 
+ []
+
+[3 <./images/elementosExp.png>]
+<images/fuerzasIman.png, id=97, 708.6475pt x 675.52374pt>
+File: images/fuerzasIman.png Graphic file (type png)
+<use images/fuerzasIman.png>
+Package pdftex.def Info: images/fuerzasIman.png  used on input line 94.
+(pdftex.def)             Requested size: 248.03033pt x 236.43684pt.
+ [4 <./images/fuerzasIman.png>]
+Overfull \hbox (23.29488pt too wide) in paragraph at lines 131--146
 [][] 
  []
 
 
-Overfull \hbox (24.42288pt too wide) in paragraph at lines 117--137
+Overfull \hbox (24.42288pt too wide) in paragraph at lines 126--146
 \OT1/cmr/m/n/10 sabiendo que $^^A\OML/cmm/m/it/10 g \OT1/cmr/m/n/10 = 10[]$ y que $^^A\OML/cmm/m/it/10 m[] \OT1/cmr/m/n/10 = 10[]6$, este er-ror acaba siendo apr^^Soximadamente
  []
 
-<images/f_n_contra_l.png, id=98, 462.528pt x 346.896pt>
+<images/f_n_contra_l.png, id=109, 462.528pt x 346.896pt>
 File: images/f_n_contra_l.png Graphic file (type png)
 <use images/f_n_contra_l.png>
-Package pdftex.def Info: images/f_n_contra_l.png  used on input line 141.
+Package pdftex.def Info: images/f_n_contra_l.png  used on input line 150.
 (pdftex.def)             Requested size: 346.89514pt x 260.17136pt.
 
-Overfull \hbox (1.89514pt too wide) in paragraph at lines 141--142
+Overfull \hbox (1.89514pt too wide) in paragraph at lines 150--151
  [][] 
  []
 
-[4] [5 <./images/f_n_contra_l.png>]
-Overfull \hbox (32.16548pt too wide) detected at line 180
+[5] [6 <./images/f_n_contra_l.png>]
+Overfull \hbox (32.16548pt too wide) detected at line 189
 \OT1/cmr/m/n/10 ^^A\OML/cmm/m/it/10 m \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 j[]j\OT1/cmr/m/n/10 ^^A\OML/cmm/m/it/10 n \OT1/cmr/m/n/10 + \OMS/cmsy/m/n/10 j[]j\OT1/cmr/m/n/10 ^^A\OML/cmm/m/it/10 g \OT1/cmr/m/n/10 = [] + []^^A\OML/cmm/m/it/10 g \OT1/cmr/m/n/10 = [] + [] \OMS/cmsy/m/n/10 ^^A \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 0000001 \OMS/cmsy/m/n/10 ^^Y \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 0001
  []
 
 
-Overfull \hbox (28.29489pt too wide) in paragraph at lines 192--207
+Overfull \hbox (28.29489pt too wide) in paragraph at lines 201--216
 [][] 
  []
 
-<images/f_n_contra_i.png, id=110, 462.528pt x 346.896pt>
+<images/f_n_contra_i.png, id=120, 462.528pt x 346.896pt>
 File: images/f_n_contra_i.png Graphic file (type png)
 <use images/f_n_contra_i.png>
-Package pdftex.def Info: images/f_n_contra_i.png  used on input line 211.
+Package pdftex.def Info: images/f_n_contra_i.png  used on input line 220.
 (pdftex.def)             Requested size: 346.89514pt x 260.17136pt.
 
-Overfull \hbox (1.89514pt too wide) in paragraph at lines 211--212
+Overfull \hbox (1.89514pt too wide) in paragraph at lines 220--221
  [][] 
  []
 
-[6]
-Overfull \hbox (45.58217pt too wide) detected at line 240
+[7]
+Overfull \hbox (45.58217pt too wide) detected at line 249
 \OT1/cmr/m/n/10 ^^A\OML/cmm/m/it/10 m[] \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 j[]j\OT1/cmr/m/n/10 ^^A\OML/cmm/m/it/10 n \OT1/cmr/m/n/10 + \OMS/cmsy/m/n/10 j[]j\OT1/cmr/m/n/10 ^^A\OML/cmm/m/it/10 g \OT1/cmr/m/n/10 = [] + []^^A\OML/cmm/m/it/10 g \OT1/cmr/m/n/10 = [] + [] \OMS/cmsy/m/n/10 ^^A \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 0000001 \OMS/cmsy/m/n/10 ^^Y \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 00003
  []
 
-[7 <./images/f_n_contra_i.png>] [8] (./InformeBalanza.aux)
+[8 <./images/f_n_contra_i.png>] [9] (./InformeBalanza.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -399,18 +416,18 @@ Package rerunfilecheck Info: File `InformeBalanza.out' has not changed.
 (rerunfilecheck)             Checksum: 74B1946CEAF013AD6C392B0FD14114D8;2026.
  ) 
 Here is how much of TeX's memory you used:
- 13658 strings out of 474222
- 267285 string characters out of 5748734
- 1933975 words of memory out of 5000000
- 35759 multiletter control sequences out of 15000+600000
+ 13677 strings out of 474222
+ 267744 string characters out of 5748733
+ 1932975 words of memory out of 5000000
+ 35775 multiletter control sequences out of 15000+600000
  563787 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  79i,11n,93p,391b,1040s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on InformeBalanza.pdf (8 pages, 298266 bytes).
+Output written on InformeBalanza.pdf (9 pages, 445507 bytes).
 PDF statistics:
- 186 PDF objects out of 1000 (max. 8388607)
- 146 compressed objects within 2 object streams
- 27 named destinations out of 1000 (max. 500000)
- 115 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 196 PDF objects out of 1000 (max. 8388607)
+ 151 compressed objects within 2 object streams
+ 30 named destinations out of 1000 (max. 500000)
+ 125 words of extra memory for PDF output out of 10000 (max. 10000000)
 
