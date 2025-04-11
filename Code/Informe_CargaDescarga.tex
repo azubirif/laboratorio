@@ -16,6 +16,8 @@
 \usepackage{fancyhdr}
 \usepackage{physics}
 \usepackage{siunitx}
+\usepackage{float}
+\usepackage{booktabs}
 
 \usepackage{geometry}
 \geometry{a4paper, margin=2.5cm}
@@ -25,8 +27,98 @@
 \tableofcontents
 \newpage
 
+\section{Objetivo}
+\begin{itemize}
+    \item Estudiar el proceso de carga de un condensador en un circuito R-C y determinar su tiempo característico.
+    \item Analizar el proceso de descarga de un condensador en un circuito R-C y estimar su tiempo característico.
+    \item Observar el fenómeno de polarización de carga eléctrica.
+    \item Adquirir conocimientos sobre dispositivos electrónicos y práctica en el montaje de circuitos.
+\end{itemize}
 
-\section{Representar los voltajes $V_R$ y $V_C$}
+\section{Material}
+\begin{itemize}
+    \item Fuente de voltaje en corriente continua.
+    \item Condensador.
+    \item Resistencia.
+    \item Cables.
+    \item Módulo Board.
+    \item Dos polímetros en modo voltímetro.
+    \item Cronómetro.
+\end{itemize}
+
+\section{Fundamentos teóricos}
+Un condensador es un dispositivo formado por dos placas metálicas separadas por un dieléctrico. Los dieléctricos tienen baja conductividad y están compuestos por dipolos eléctricos, como la molécula de agua (Figura 1). 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{dipolo_agua.png}
+    \caption{Representación del dipolo de la molécula de agua.}
+    \label{fig:dipolo}
+\end{figure}
+
+La polarización del dieléctrico ocurre cuando se aplica un campo eléctrico externo, alineando los dipolos (Figura 2). En un condensador plano-paralelo, el campo eléctrico total \(\vec{E}\) es la suma del campo externo \(\vec{E}_o\) y el campo inducido \(\vec{E}_i\):
+
+\[
+\vec{E} = \vec{E}_o + \vec{E}_i
+\]
+
+La capacidad \(C\) del condensador se define como:
+
+\[
+C = \frac{Q}{V}
+\]
+
+donde \(Q\) es la carga almacenada y \(V\) la diferencia de potencial.
+
+\subsection{Fenómeno de carga}
+Al conectar el circuito R-C a una fuente de voltaje \(V_o\), la corriente \(i(t)\) y el voltaje \(V_C(t)\) evolucionan según:
+
+\[
+i(t) = \frac{V_o}{R} e^{-\frac{t}{RC}}, \quad V_C(t) = V_o \left(1 - e^{-\frac{t}{RC}}\right)
+\]
+
+El tiempo característico de carga es \(\tau = RC\).
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{circuito_carga.png}
+    \caption{Circuito R-C durante la fase de carga.}
+    \label{fig:carga}
+\end{figure}
+
+\subsection{Fenómeno de descarga}
+Al desconectar la fuente, el condensador se descarga a través de la resistencia. La corriente y el voltaje siguen:
+
+\[
+i(t) = -\frac{V_o}{R} e^{-\frac{t}{RC}}, \quad V_C(t) = V_o e^{-\frac{t}{RC}}
+\]
+
+El tiempo de relajación \(\tau = RC\) indica el tiempo que tarda el dieléctrico en despolarizarse.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{circuito_descarga.png}
+    \caption{Circuito R-C durante la fase de descarga.}
+    \label{fig:descarga}
+\end{figure}
+
+\section{Procedimiento experimental}
+\subsection{Estudio del fenómeno de carga}
+\begin{enumerate}
+    \item Montar el circuito R-C.
+    \item Medir los valores de \(R\) y \(C\) con el polímetro.
+    \item Conectar los voltímetros para medir \(V_R\) y \(V_C\).
+    \item Ajustar la fuente a 5 V y definir \(t_1 = 3RC\).
+    \item Registrar \(V_R\) y \(V_C\) en una tabla con columnas: tiempo, \(V_R\), \(V_C\).
+\end{enumerate}
+
+\subsection{Estudio del fenómeno de descarga}
+\begin{enumerate}
+    \item Cambiar el interruptor a la posición P2.
+    \item Registrar nuevamente \(V_R\) y \(V_C\) para \(t \approx 3RC\).
+\end{enumerate}
+\section{Tratamiento de datos}
+\subsection{Representar los voltajes $V_R$ y $V_C$}
 En el laboratorio, se tomaron las siguientes medidas de los Voltajes, $V_R$ $V_C$:
 \begin{table}[H]
 	\centering
@@ -235,7 +327,7 @@ Esta expresión corresponde a una función exponencial creciente, lo cual signif
 
 
 
-\section{Q(t)}
+\subsection{Q(t)}
 La medida de capacitancia del condensador usado en el circuito eléctrico de carga y descarga es de:
 \[
 47 \eta F = 47\times10^{-6} F
@@ -385,7 +477,7 @@ lo cual representa una incertidumbre aproximada del \( \sim 10\% \).
 Este nivel de error es coherente con la precisión de los instrumentos utilizados en el laboratorio, especialmente considerando que la tensión \( V_0 \) se ha estimado a partir de datos experimentales con cierta dispersión. 
 Este resultado permite validar el comportamiento esperado del condensador, confirmando que la carga acumulada depende linealmente del voltaje aplicado y de la capacitancia, tal como predice la ley \( Q = C \cdot V \). 
 La incorporación de la propagación de errores permite establecer un margen realista de confianza sobre la medida obtenida.
-\section{V sobre resistencia}
+\subsection{V sobre resistencia}
 En un circuito RC de carga/descarga, la caída de tensión en la resistencia \( R \) se describe (en la fase de descarga, por ejemplo) por la ecuación exponencial:
 
 \[
@@ -675,9 +767,263 @@ Con los valores:
 \text{Error relativo (\%)} = \left| \frac{401.6 - 334.64}{334.64} \right| \cdot 100 \approx 20.1\%
 \]
 Este resultado indica que el valor experimental se encuentra razonablemente próximo al valor teórico, con una diferencia del orden del $20.1$
+\subsection{Representar Vr y Vc}
+En el laboratorio, al experimentar la descarga, se tomaron los siguientes medidas de los voltajes: 
+
+\paragraph{}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{cc}
+        \toprule
+        \textbf{Voltaje del condensador (V)} & \textbf{Voltaje de la resistencia (V)} \\
+        \midrule
+        2.28 & -2.86 \\
+        2.37 & -2.78 \\
+        2.44 & -2.71 \\
+        2.52 & -2.63 \\
+        2.59 & -2.56 \\
+        2.66 & -2.49 \\
+        2.73 & -2.42 \\
+        2.79 & -2.36 \\
+        2.85 & -2.30 \\
+        2.91 & -2.24 \\
+        2.97 & -2.18 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Voltajes del condensador y la resistencia}
+    \label{tab:voltajes}
+\end{table}
+
+Estas medidas las tomamos respecto a intervalos de tiempo de 10 segundos cada uno, tomando un minuto y cuarenta segundos de datos:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ccc}
+        \hline
+        tiempo (s) & Voltaje del condensador (V) & Voltaje de la resistencia (V) \\
+        \hline
+        0   & 2.28 & -2.86 \\
+        10  & 2.37 & -2.78 \\
+        20  & 2.44 & -2.71 \\
+        30  & 2.52 & -2.63 \\
+        40  & 2.59 & -2.56 \\
+        50  & 2.66 & -2.49 \\
+        60  & 2.73 & -2.42 \\
+        70  & 2.79 & -2.36 \\
+        80  & 2.85 & -2.30 \\
+        90  & 2.91 & -2.24 \\
+        100 & 2.97 & -2.18 \\
+        \hline
+    \end{tabular}
+    \caption{Datos de voltaje del condensador y la resistencia en función del tiempo.}
+    \label{tab:voltajes}
+\end{table}
 
 
 
+Según las herramientas de medicion usados en la toma de datos, el tiempo posee un error de 0,01 mientras que los errores relativos de los voltajes son los siguientes: el de la resistencia posee un error relativo del 0,7 mientras que el del condensador un 0,5.
+Para calcular el error, nos basta con tomar el error relativo, multiplicarlo por su media y dividirlo entre 100:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ccc}
+    \hline
+        Error de Vr & Error de Vc \\ \hline
+        0.02562  & 0.00760 \\ \hline
+        0.02492  & 0.00805 \\ \hline
+        0.02429 & 0.00850 \\ \hline
+        0.02366 & 0.00895  \\ \hline
+        0.02310 & 0.00935 \\ \hline
+        0.02254 & 0.00975 \\ \hline
+        0.02198 & 0.01015 \\ \hline
+        0.02142 & 0.01050 \\ \hline
+        0.02093 & 0.01090 \\ \hline
+        0.02044 & 0.01125 \\ \hline
+        0.01995 & 0.01160 \\ \hline
+    \end{tabular}
+    \caption{Errores de los voltajes}
+\end{table}
+
+Para encontrar los valores absolutos, tomamos el error mas grande entre los errores de la tabla anterior y 0,01, luego nos queda:
 
 
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ccc}
+    \hline
+        Error de Vr & Error de Vc \\ \hline
+        0.02562  & 0.01 \\ \hline
+        0.02492  & 0.01 \\ \hline
+        0.02429 & 0.01 \\ \hline
+        0.02366 & 0.01  \\ \hline
+        0.02310 & 0.01 \\ \hline
+        0.02254 & 0.01 \\ \hline
+        0.02198 & 0.01015 \\ \hline
+        0.02142 & 0.01050 \\ \hline
+        0.02093 & 0.01090 \\ \hline
+        0.02044 & 0.01125 \\ \hline
+        0.01995 & 0.01160 \\ \hline
+    \end{tabular}
+    \caption{Errores de los voltajes}
+\end{table}
+
+
+ya solo nos queda graficar ambos voltajes en funcion del tiempo y sacar conclusiones:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{image.png}
+    \caption{Ambos voltajes frente al tiempo}
+    \label{fig:enter-label}
+\end{figure}
+
+
+El grafico concuerda con la teoría, ya que si Vr=-Vc, significa que si uno aumenta, el otro tambien tiene que aumentar en su misma cantidad en función del mismo tiempo.
+\newpage
+\subsection{Determinar el valor de la carga maxima y la evolucion temporal de la carga partir de los valores de Vc y del valor de C}
+
+Para hallar el valor de la carga máxima, usaremos la siguiente formula:
+\begin{equation}
+Q_M = V_o \cdot C
+\end{equation}
+Teniendo en cuenta que:
+\begin{equation}
+C=47\cdot10^-6 F
+\end{equation}
+\begin{equation}
+V_o=5,15
+\end{equation}
+Solo nos queda sustituir los valores:
+\begin{equation}
+Q_M = V_o \cdot C=5,15\cdot47\cdot10^-6=24,25\cdot10^-4
+\end{equation}
+
+Nos piden determinar la evolución de la carga en función del tiempo mediante los valores de C y Vc
+
+poseemos los valores de Vc:
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|}
+    \hline
+        Voltaje del condensador (V) & Error de Vc \\ \hline
+        2,28 & 0,01 \\ \hline
+        2,37 & 0,01 \\ \hline
+        2,44 & 0,01 \\ \hline
+        2,52 & 0,01 \\ \hline
+        2,59 & 0,01 \\ \hline
+        2,66 & 0,01 \\ \hline
+        2,73 & 0,01015 \\ \hline
+        2,79 & 0,0105 \\ \hline
+        2,85 & 0,0109 \\ \hline
+        2,91 & 0,01124 \\ \hline
+        2,97 & 0,0116 \\ \hline
+    \end{tabular}
+\end{table}
+Usamos la definición de Vc:
+\begin{equation}
+V_c(t)=Q(t)/C ; Q(t)=V_C\cdot C
+\end{equation}
+\newpage
+Sustituyendo valores nos queda la siguiente tabla:
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|}
+    \hline
+        tiempo (s) & Q media & Error Q \\ \hline
+        0 & 0,00010716 & 9,39999999999974E-07 \\ \hline
+        10 & 0,00011139 & 9,39999999999988E-07 \\ \hline
+        20 & 0,00011468 & 9,39999999999974E-07 \\ \hline
+        30 & 0,00011844 & 9,39999999999974E-07 \\ \hline
+        40 & 0,00012173 & 9,39999999999988E-07 \\ \hline
+        50 & 0,00012502 & 9,39999999999974E-07 \\ \hline
+        60 & 0,00012831 & 9,54099999999985E-07 \\ \hline
+        70 & 0,00013113 & 9,86999999999982E-07 \\ \hline
+        80 & 0,00013395 & 1,02459999999998E-06 \\ \hline
+        90 & 0,00013677 & 0,00000105656 \\ \hline
+        100 & 0,00013959 & 1,09040000000001E-06 \\ \hline
+    \end{tabular}
+\end{table}
+graficado queda de la siguiente manera:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{image2.png}
+    \caption{Aumento de carga frente al tiempo}
+    \label{fig:enter-label}
+\end{figure}
+Lo cual concuerda con la ecuación (5) y con la toma de datos, a medida que aumenta el tiempo, Vc aumentará, y al este ser proporcional con la carga, esta última tambien aumentará
+
+\newpage
+\subsection{Determinar Vo y $\tau$ a partir de los parámetros de la recta y el error cometido en $\tau$}
+
+Nos es dada la siguiente recta:
+\begin{equation}
+    Z=mt+n
+\end{equation}
+donde:
+\begin{equation}
+    m=-(\log e/\tau)
+\end{equation}
+\begin{equation}
+    n=\log V_o    
+\end{equation}
+Estos valores, a su vez, vienen de:
+\begin{equation}
+V_c(t) = V_o e^{-t/\tau}
+\end{equation}
+tomamos logaritmo en base 10 a ambos lados:
+\begin{equation}
+     \log V_c = \log V_o - \log\left( \frac{t}{\tau} \right) 
+\end{equation}
+haciendo un cambio de variable, llamando Z a logVc:
+\begin{equation}
+    Z=mt+n
+\end{equation}
+$V_o$ es el voltaje en el condensador justo en el momento en que comienza la descarga, groso modo, es el voltaje total, la suma de los valores absolutos de ambos voltajes
+\begin{equation}
+    V_o=V_c+V_r=5,15
+\end{equation}
+Nos queda por medir $\tau$, la cual podemos sacar por definición ya que tenemos los valores del condensador y de la resistencia:
+\begin{equation}
+    \tau=RC=7,07·47\cdot10^{-6}=3,3\cdot10^{-4}
+\end{equation}
+nos queda la siguiente recta:
+\begin{equation}
+    m=-1316,04
+\end{equation}
+\begin{equation}
+    n=0,712
+\end{equation}
+\begin{equation}
+    Z=-1316t+0,5119
+\end{equation}
+Obtenemos los siguientes valores de Z:
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|}
+    \hline
+        Z & tiempo (s) \\ \hline
+        -13159,3 & 10 \\ \hline
+        -26319,3 & 20 \\ \hline
+        -39479,3 & 30 \\ \hline
+        -52639,3 & 40 \\ \hline
+        -65799,3 & 50 \\ \hline
+        -78959,3 & 60 \\ \hline
+        -92119,3 & 70 \\ \hline
+        -105279,3 & 80 \\ \hline
+        -118439,3 & 90 \\ \hline
+        -131599,3 & 100 \\ \hline
+    \end{tabular}
+\end{table}
+graficado queda de la siguiente manera:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{image3.png}
+    \caption{Recta Z}
+    \label{fig:enter-label}
+\end{figure}
+solo nos queda hallar el error que podamos haber cometido en $\tau$. Para ello, aplicamos la formula de propagacion de errores a la función $\tau=-\log e /m$. Para hallar el valor del error absoluto, derivamos $\tau$ respecto de m y lo multiplicamos por el error de m(0,00002).
+\begin{equation}
+    error=\log e/m^2=0,434/(-1316)^2=2,5\cdot10^{-7}
+\end{equation}
 \end{document}
